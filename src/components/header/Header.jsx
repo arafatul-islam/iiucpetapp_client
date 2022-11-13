@@ -29,7 +29,7 @@ const Header = ({ type }) => {
   const [options, setOptions] = useState({
     adult: 1,
     children: 0,
-    room: 1,
+    cage: 1,
   });
 
   const navigate = useNavigate();
@@ -44,7 +44,7 @@ const Header = ({ type }) => {
   };
 
   const handleSearch = () => {
-    navigate("/hotels", { state: { destination, date, options } });
+    navigate("/fostercenters", { state: { destination, date, options } });
   };
 
   return (
@@ -121,7 +121,7 @@ const Header = ({ type }) => {
                 <span
                   onClick={() => setOpenOptions(!openOptions)}
                   className="headerSearchText"
-                >{`${options.adult} adult · ${options.children} children · ${options.room} room`}</span>
+                >{`${options.adult} adult · ${options.children} children · ${options.cage} cage`}</span>
                 {openOptions && (
                   <div className="options">
                     <div className="optionItem">
@@ -167,21 +167,21 @@ const Header = ({ type }) => {
                       </div>
                     </div>
                     <div className="optionItem">
-                      <span className="optionText">Room</span>
+                      <span className="optionText">Cage</span>
                       <div className="optionCounter">
                         <button
-                          disabled={options.room <= 1}
+                          disabled={options.cage <= 1}
                           className="optionCounterButton"
-                          onClick={() => handleOption("room", "d")}
+                          onClick={() => handleOption("cage", "d")}
                         >
                           -
                         </button>
                         <span className="optionCounterNumber">
-                          {options.room}
+                          {options.cage}
                         </span>
                         <button
                           className="optionCounterButton"
-                          onClick={() => handleOption("room", "i")}
+                          onClick={() => handleOption("cage", "i")}
                         >
                           +
                         </button>
