@@ -37,9 +37,9 @@ const Reserve = ({ setOpen, fcID }) => {
   };
 
   const isAvailable = (cageNumber) => {
-    const isFound = cageNumber.unavailableDates.some((date) => {
-      return allDates.includes(new Date(date).getTime);
-    });
+    const isFound = cageNumber.unavailableDates.some((date) =>
+      allDates.includes(new Date(date).getTime())
+    );
 
     return !isFound;
   };
