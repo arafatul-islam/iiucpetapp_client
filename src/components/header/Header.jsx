@@ -3,6 +3,7 @@ import {
   faCat,
   faCalendarDays,
   faCar,
+  faDog,
   faPerson,
   faPlane,
   faTaxi,
@@ -17,7 +18,7 @@ import { useState } from "react";
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { format } from "date-fns";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { SearchContext } from "../../context/SearchContext";
 import { AuthContext } from "../../context/AuthContext";
@@ -53,37 +54,50 @@ const Header = ({ type }) => {
         <div className="headerList">
           <div className="headerListItem active">
             <FontAwesomeIcon icon={faCat} />
-            <span>Adoption</span>
+            <span>
+              <Link
+                to="adoption"
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                Adoption
+              </Link>
+            </span>
           </div>
           <div className="headerListItem">
-            <FontAwesomeIcon icon={faStethoscope} />
-            <span>Medicine</span>
+            <FontAwesomeIcon icon={faDog} />
+            <span>Foster</span>
           </div>
           <div className="headerListItem">
             <FontAwesomeIcon icon={faCar} />
             <span>Rescue</span>
           </div>
           <div className="headerListItem">
-            <FontAwesomeIcon icon={faUserDoctor} />
-            <span>Vet Clinic</span>
+            <Link to="vets" style={{ textDecoration: "none", color: "white" }}>
+              <FontAwesomeIcon icon={faUserDoctor} />
+              <span>Vet Clinic</span>
+            </Link>
           </div>
         </div>
         {type !== "list" && (
           <>
-            <h1 className="headerTitle">
-              A lifetime of discounts? It's Genius.
-            </h1>
-            <p className="headerDesc">
-              Get rewarded for your travels – unlock instant savings of 10% or
-              more with a free Lamabooking account
-            </p>
-            {!user && <button className="headerBtn">Sign in / Register</button>}
+            <h1 className="headerTitle">Adopt, Foster , Rescue , Find Vet</h1>
+            <p className="headerDesc">One place for all your pet needs.</p>
+            {!user && (
+              <button className="headerBtn">
+                <Link
+                  to="login"
+                  style={{ color: "inherit", TextDecoration: "none" }}
+                >
+                  Sign in / Register
+                </Link>
+              </button>
+            )}
             <div className="headerSearch">
               <div className="headerSearchItem">
                 <FontAwesomeIcon icon={faLocationDot} className="headerIcon" />
                 <input
                   type="text"
-                  placeholder="Where are you going?"
+                  placeholder="Finding Foster Center?"
                   className="headerSearchInput"
                   onChange={(e) => setDestination(e.target.value)}
                 />

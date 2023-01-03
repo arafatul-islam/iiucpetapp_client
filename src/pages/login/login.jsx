@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import "./login.css";
 const Login = () => {
   const [credentials, setCredentials] = useState({
     username: undefined,
@@ -20,32 +20,31 @@ const Login = () => {
     dispatch({ type: "LOGIN_START" });
     try {
       const res = await axios.post("auth/login", credentials);
-      dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
+      dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
       navigate("/");
     } catch (error) {
       dispatch({ type: "LOGIN_FAILURE", payload: error.response.data });
     }
   };
 
- 
   return (
     <div className="login">
       <div className="lContainer">
         <input
-          placeholder="username or email"
           type="text"
+          placeholder="username"
           id="username"
-          className="lInput"
           onChange={handleChange}
+          className="lInput"
         />
         <input
-          placeholder="password"
           type="password"
+          placeholder="password"
           id="password"
-          className="lInput"
           onChange={handleChange}
+          className="lInput"
         />
-        <button  onClick={handleLogin} className="lButton">
+        <button disabled={loading} onClick={handleLogin} className="lButton">
           Login
         </button>
         {err && <span>{err.message}</span>}
@@ -53,5 +52,4 @@ const Login = () => {
     </div>
   );
 };
-
 export default Login;

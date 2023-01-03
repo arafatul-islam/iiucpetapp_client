@@ -26,7 +26,6 @@ const FosterCenter = () => {
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
   const [openReserve, setOpenReserve] = useState(false);
-
   const { data, loading, error } = useFetch(`/fostercenter/find/${fosterid}`);
   const { dates } = useContext(SearchContext);
 

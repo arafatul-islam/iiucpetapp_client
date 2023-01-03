@@ -5,6 +5,7 @@ import { useState, useContext } from "react";
 import { SearchContext } from "../../context/SearchContext";
 import "./reserve.css";
 import axios from "axios";
+
 const Reserve = ({ setOpen, fcID }) => {
   const [checkedCages, setChekedCages] = useState([]);
   const { data, loading, err } = useFetch(`/fostercenter/cage/${fcID}`);
@@ -95,7 +96,7 @@ const Reserve = ({ setOpen, fcID }) => {
           </div>
         ))}
         <button className="rButton" onClick={handleReserve}>
-          {" "}
+         
           Reserve Now!
         </button>
       </div>
